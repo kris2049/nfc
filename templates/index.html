@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wi-Fi QR Code</title>
+    <!-- 引入外部 CSS 文件 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Connect to Wi-Fi</h1>
+        <p>SSID: <strong>{{ ssid }}</strong></p>
+        <p>Password: <strong>{{ password }}</strong></p>
+        <img src="{{ url_for('serve_qrcode', filename=qr_filename) }}" alt="Wi-Fi QR Code">
+        <p class="instruction">Long press the QR code to scan and connect to the Wi-Fi.</p>
+        <!-- 添加按钮 -->
+        <button id="connect-wifi-button">Connect to Wi-Fi</button>
+    </div>
+    <!-- 直接传递原始密码（无需转义） -->
+    <div id="wifi-config" 
+         data-ssid="{{ ssid }}" 
+         data-password="{{ password }}"></div>
+    <!-- 声明全局变量
+    <script>
+        const ssid = "{{ ssid }}";
+        const password = "{{ password }}";
+    </script> -->
+    <!-- 引入外部 JavaScript 文件 -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
