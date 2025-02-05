@@ -49,7 +49,7 @@ def serve_qrcode(filename):
 
 @app.route('/test')
 def test():
-    print("hello world!")
+    return 'This is a test page'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
