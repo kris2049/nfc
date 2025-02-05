@@ -47,6 +47,9 @@ def connect_wifi():
 def serve_qrcode(filename):
     return send_from_directory(app.config['QRCODE_DIR'], filename)
 
+@app.route('/test')
+def test():
+    print("hello world!")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
