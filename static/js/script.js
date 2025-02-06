@@ -45,6 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // 同时监听 click 和 touchend 事件
-    connectButton.addEventListener('click', handleCopy);
+    // connectButton.addEventListener('click', handleCopy);
     connectButton.addEventListener('touchend', handleCopy);
 });
