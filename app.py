@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, render_template, send_from_directory
 import qrcode
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 app.config['QRCODE_DIR'] = os.path.join(app.static_folder, 'qrcodes')
 
 # 确保二维码的目录存在
