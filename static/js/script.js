@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
 
             // 跳转到wifi设置页面
+            console.log("跳转到wifi设置")
             redirectToWifiSettings();
         } catch (error) {
             // 兼容旧浏览器的降级方案
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     connectButton.textContent = "Copy Password";
                 }, 2000);
                 // 跳转到wifi设置页面
+                console.log("跳转到wifi设置")
                 redirectToWifiSettings();
             } catch (err) {
                 alert("Failed to copy. Please manually select the password.");
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try{
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
             const intentUrl = "intent://settings/wifi#Intent;scheme=android;package=com.android.settings;end";
+            console.log("开始跳转")
             window.location.href = intentUrl;
         } catch (err){
             alert("跳转wifi连接页面失败")
