@@ -42,4 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 同时监听 click 和 touchend 事件
     connectButton.addEventListener('click', handleCopy);
     connectButton.addEventListener('touchend', handleCopy);
+
+    function redirectToWifiSettings() {
+        try{
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const intentUrl = `intent://wifi/${encodeURIComponent(ssid)}/${encodeURIComponent(password)}#Intent;scheme=android;package=com.android.settings;end`;
+            window.location.href = intentUrl;
+        } catch (err){
+            alert("跳转wifi连接页面失败")
+        }
+    }
 });
