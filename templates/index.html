@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wi-Fi 二维码</title>
+    <title>Wi-Fi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <h1>Wi-Fi 连接</h1>
+        <!-- Wi-Fi 图标替换为图片 -->
+        <div class="wifi-icon-container">
+            <img src="{{ url_for('static', filename='img/wifi-icon.png') }}" alt="Wi-Fi 图标" class="wifi-icon">
+        </div>
+
         <div class="wifi-info">
             <p><strong>WiFi 名称：</strong>{{ ssid }}</p>
             <p><strong>密码：</strong>{{ password }}</p>
@@ -28,7 +32,7 @@
         <button id="connect-wifi-button">复制密码</button>
 
         <!-- 显示连接提示信息 -->
-        <p id="connection-tip" style="display:none; color: green;"></p> <!-- 隐藏提示，点击复制后才显示 -->
+        <p id="connection-tip" style="display:none; color: green;"></p>
     </div>
 
     <div id="wifi-config" 
