@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 复制功能实现
     const handleCopy = async () => {
         try {
+            console.log("进入到第一个复制方法")
             await navigator.clipboard.writeText(password);
             connectButton.textContent = "✔ 已复制！";
             setTimeout(() => {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.appendChild(textarea);
             textarea.select();
             try {
+                console.log("进入到第二个复制方法")
                 document.execCommand('copy');
                 connectButton.textContent = "✔ 已复制！";
                 setTimeout(() => {
