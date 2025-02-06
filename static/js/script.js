@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 connectButton.textContent = "Copy Password";
             }, 2000);
+
+            // 跳转到wifi设置页面
+            redirectToWifiSettings();
         } catch (error) {
             // 兼容旧浏览器的降级方案
             const textarea = document.createElement('textarea');
