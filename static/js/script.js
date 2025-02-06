@@ -1,27 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
     const connectButton = document.getElementById('connect-wifi-button');
     const wifiConfig = document.getElementById('wifi-config');
+    const deviceHint = document.getElementById('device-hint');
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    // 直接获取原始密码
+    // 获取原始密码和SSID
     const password = wifiConfig.dataset.password;
     const ssid = wifiConfig.dataset.ssid;
 
-    // 测试
-    console.log(password);
-    console.log(ssid);
+    // 提示信息
+    if (isIOS) {
+        deviceHint.textContent = '长按二维码可以自动识别Wi-Fi连接';
+    } else {
+        deviceHint.textContent = '点击按钮复制Wi-Fi密码, 然后手动前往Wi-Fi设置页面连接Wi-Fi';
+    }
 
     // 复制功能实现
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(password);
-            connectButton.textContent = "✔ Copied!";
+            connectButton.textContent = "✔ 已复制！";
             setTimeout(() => {
-                connectButton.textContent = "Copy Password";
+                connectButton.textContent = "复制密码";
             }, 2000);
 
-            // 跳转到wifi设置页面
-            console.log("跳转到wifi设置")
-            redirectToWifiSettings();
+            if (!isIOS) {
+                alert("Wi-Fi密码已复制, 请手动前往Wi-Fi设置页面连接Wi-Fi");
+            }
         } catch (error) {
             // 兼容旧浏览器的降级方案
             const textarea = document.createElement('textarea');
@@ -31,15 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
             textarea.select();
             try {
                 document.execCommand('copy');
-                connectButton.textContent = "✔ Copied!";
+                connectButton.textContent = "✔ 已复制！";
                 setTimeout(() => {
-                    connectButton.textContent = "Copy Password";
+                    connectButton.textContent = "复制密码";
                 }, 2000);
-                // 跳转到wifi设置页面
-                console.log("跳转到wifi设置")
-                redirectToWifiSettings();
+                if (!isIOS) {
+                    alert("Wi-Fi密码已复制, 请手动前往Wi-Fi设置页面连接Wi-Fi");
+                }
             } catch (err) {
-                alert("Failed to copy. Please manually select the password.");
+                alert("复制失败，请手动选择密码");
             } finally {
                 document.body.removeChild(textarea);
             }
@@ -49,15 +54,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // 同时监听 click 和 touchend 事件
     connectButton.addEventListener('click', handleCopy);
     connectButton.addEventListener('touchend', handleCopy);
-
-    function redirectToWifiSettings() {
-        try{
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            const intentUrl = "intent://settings/wifi#Intent;scheme=android;package=com.android.settings;end";
-            console.log("开始跳转")
-            window.location.href = intentUrl;
-        } catch (err){
-            alert("跳转wifi连接页面失败")
-        }
-    }
 });

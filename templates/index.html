@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wi-Fi QR Code</title>
-    <!-- 引入外部 CSS 文件 -->
+    <title>Wi-Fi 二维码</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
 <body>
     <div class="container">
-        <h1>Connect to Wi-Fi</h1>
+        <h1>连接 Wi-Fi</h1>
         <p>SSID: <strong>{{ ssid }}</strong></p>
-        <p>Password: <strong>{{ password }}</strong></p>
-        <img src="{{ url_for('serve_qrcode', filename=qr_filename) }}" alt="Wi-Fi QR Code">
-        <p class="instruction">Long press the QR code to scan and connect to the Wi-Fi.</p>
+        <p>密码: <strong>{{ password }}</strong></p>
+        <img src="{{ url_for('serve_qrcode', filename=qr_filename) }}" alt="Wi-Fi 二维码">
+        
+        <!-- 设备提示信息 -->
+        <p class="instruction" id="device-hint">加载中...</p>
+
         <!-- 添加按钮 -->
-        <button id="connect-wifi-button">Connect to Wi-Fi</button>
+        <button id="connect-wifi-button">复制密码</button>
     </div>
-    <!-- 直接传递原始密码（无需转义） -->
+
     <div id="wifi-config" 
          data-ssid="{{ ssid }}" 
          data-password="{{ password }}"></div>
-    <!-- 声明全局变量
-    <script>
-        const ssid = "{{ ssid }}";
-        const password = "{{ password }}";
-    </script> -->
-    <!-- 引入外部 JavaScript 文件 -->
+
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
