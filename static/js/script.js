@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const connectButton = document.getElementById('connect-wifi-button');
     const wifiConfig = document.getElementById('wifi-config');
     const deviceHint = document.getElementById('device-hint');
+    const connectionTip = document.getElementById('connection-tip');
 
     // 获取原始密码和SSID
     const password = wifiConfig.dataset.password;
@@ -20,6 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 connectButton.textContent = "复制密码";
             }, 2000);
 
+            // 显示连接提示信息
+            connectionTip.textContent = `Wi-Fi密码已复制, 请连接 Wi-Fi 网络：${ssid}`;
+            connectionTip.style.display = "block";  // 显示提示信息
+
             alert("Wi-Fi密码已复制, 请手动前往Wi-Fi设置页面连接Wi-Fi");
         } catch (error) {
             // 兼容旧浏览器的降级方案
@@ -35,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     connectButton.textContent = "复制密码";
                 }, 2000);
+
+                // 显示连接提示信息
+                connectionTip.textContent = `Wi-Fi密码已复制, 请连接 Wi-Fi 网络：${ssid}`;
+                connectionTip.style.display = "block";  // 显示提示信息
+
                 alert("Wi-Fi密码已复制, 请手动前往Wi-Fi设置页面连接Wi-Fi");
             } catch (err) {
                 alert("复制失败，请手动选择密码");
@@ -45,6 +55,5 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // 同时监听 click 和 touchend 事件
-    // connectButton.addEventListener('click', handleCopy);
     connectButton.addEventListener('touchend', handleCopy);
 });
