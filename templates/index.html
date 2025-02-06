@@ -10,15 +10,21 @@
 
 <body>
     <div class="container">
-        <h1>连接 Wi-Fi</h1>
-        <p>SSID: <strong>{{ ssid }}</strong></p>
-        <p>密码: <strong>{{ password }}</strong></p>
-        <img src="{{ url_for('serve_qrcode', filename=qr_filename) }}" alt="Wi-Fi 二维码">
-        
-        <!-- 设备提示信息 -->
+        <h1>Wi-Fi 连接</h1>
+        <div class="wifi-info">
+            <p><strong>WiFi 名称：</strong>{{ ssid }}</p>
+            <p><strong>密码：</strong>{{ password }}</p>
+        </div>
+
+        <!-- 显示二维码 -->
+        <div class="qrcode-container">
+            <img src="{{ url_for('serve_qrcode', filename=qr_filename) }}" alt="Wi-Fi 二维码">
+        </div>
+
+        <!-- 提示信息 -->
         <p class="instruction" id="device-hint">加载中...</p>
 
-        <!-- 添加按钮 -->
+        <!-- 操作按钮 -->
         <button id="connect-wifi-button">复制密码</button>
     </div>
 
