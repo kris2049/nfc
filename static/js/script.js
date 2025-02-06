@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
 
             // 显示连接提示信息
-            connectionTip.textContent = `Wi-Fi密码已复制, 请连接 Wi-Fi 网络：${ssid}`;
+            connectionTip.textContent = `Wi-Fi密码已复制, 请手动前往Wi-Fi设置连接 Wi-Fi 网络：${ssid}`;
             connectionTip.style.display = "block";  // 显示提示信息
 
             alert("Wi-Fi密码已复制, 请手动前往Wi-Fi设置页面连接Wi-Fi");
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 2000);
 
                 // 显示连接提示信息
-                connectionTip.textContent = `Wi-Fi密码已复制, 请连接 Wi-Fi 网络：${ssid}`;
+                connectionTip.textContent = `Wi-Fi密码已复制, 请手动前往Wi-Fi设置连接 Wi-Fi 网络：${ssid}`;
                 connectionTip.style.display = "block";  // 显示提示信息
 
                 alert("Wi-Fi密码已复制, 请手动前往Wi-Fi设置页面连接Wi-Fi");
