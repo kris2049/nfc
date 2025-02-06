@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     connectButton.textContent = "Copy Password";
                 }, 2000);
+                // 跳转到wifi设置页面
+                redirectToWifiSettings();
             } catch (err) {
                 alert("Failed to copy. Please manually select the password.");
             } finally {
