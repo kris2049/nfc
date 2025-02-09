@@ -61,20 +61,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 connectionTip.style.display = "block";
 
                 // **使用 SweetAlert2 提示**
-                Swal.fire({
-                    title: "Wi-Fi 连接信息",
-                    html: `
-                        <div style="font-size: 18px; font-weight: bold;">Wi-Fi 名称：</div>
-                        <div style="font-size: 22px; font-weight: bold; color: #007bff;">${ssid}</div>
-                        <br>
-                        <div style="font-size: 18px; font-weight: bold;">Wi-Fi 密码：</div>
-                        <div style="font-size: 22px; font-weight: bold; color: #28a745;">${password}</div>
-                        <br>
-                        <div style="font-size: 14px; color: #666;">Wi-Fi密码已复制, 请手动前往 Wi-Fi 设置页面连接 Wi-Fi</div>
-                    `,
-                    icon: "info",
-                    confirmButtonText: "确定"
-                });
+                // Swal.fire({
+                //     title: "Wi-Fi 连接信息",
+                //     html: `
+                //         <div style="font-size: 18px; font-weight: bold;">Wi-Fi 名称：</div>
+                //         <div style="font-size: 22px; font-weight: bold; color: #007bff;">${ssid}</div>
+                //         <br>
+                //         <div style="font-size: 18px; font-weight: bold;">Wi-Fi 密码：</div>
+                //         <div style="font-size: 22px; font-weight: bold; color: #28a745;">${password}</div>
+                //         <br>
+                //         <div style="font-size: 14px; color: #666;">Wi-Fi密码已复制, 请手动前往 Wi-Fi 设置页面连接 Wi-Fi</div>
+                //     `,
+                //     icon: "info",
+                //     confirmButtonText: "确定"
+                // });
 
             } catch (err) {
                 alert("复制失败，请手动选择密码");
