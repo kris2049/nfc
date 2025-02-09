@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const wifiConfig = document.getElementById('wifi-config');
     const deviceHint = document.getElementById('device-hint');
     const connectionTip = document.getElementById('connection-tip');
+    const wifiInfoModal = document.getElementById('wifi-info-modal');
+    const closeModalBtn = document.getElementsByClassName('close-btn')[0];
+    const modalOkBtn = document.getElementById('modal-ok-btn');
 
     // 获取 Wi-Fi SSID 和密码
     const password = wifiConfig.dataset.password;
@@ -25,21 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
             connectionTip.textContent = `Wi-Fi密码已复制, 请手动前往Wi-Fi设置连接 Wi-Fi 网络：${ssid}`;
             connectionTip.style.display = "block";  // 显示提示信息
 
-            // **使用 SweetAlert2 提示**
-            Swal.fire({
-                title: "Wi-Fi 连接信息",
-                html: `
-                    <div style="font-size: 18px; font-weight: bold;">Wi-Fi 名称：</div>
-                    <div style="font-size: 22px; font-weight: bold; color: #007bff;">${ssid}</div>
-                    <br>
-                    <div style="font-size: 18px; font-weight: bold;">Wi-Fi 密码：</div>
-                    <div style="font-size: 22px; font-weight: bold; color: #28a745;">${password}</div>
-                    <br>
-                    <div style="font-size: 14px; color: #666;">Wi-Fi密码已复制, 请手动前往 Wi-Fi 设置页面连接 Wi-Fi</div>
-                `,
-                icon: "info",
-                confirmButtonText: "确定"
-            });
+            // 填充弹窗内容
+            document.getElementById('wifi-ssid').textContent = ssid;
+            document.getElementById('wifi-password').textContent = password;
+
+            // 显示弹窗
+            wifiInfoModal.style.display = 'block';
 
         } catch (error) {
             // 兼容旧浏览器
@@ -60,22 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 connectionTip.textContent = `Wi-Fi密码已复制, 请手动前往Wi-Fi设置连接 Wi-Fi 网络：${ssid}`;
                 connectionTip.style.display = "block";
 
-                // **使用 SweetAlert2 提示**
-                // Swal.fire({
-                //     title: "Wi-Fi 连接信息",
-                //     html: `
-                //         <div style="font-size: 18px; font-weight: bold;">Wi-Fi 名称：</div>
-                //         <div style="font-size: 22px; font-weight: bold; color: #007bff;">${ssid}</div>
-                //         <br>
-                //         <div style="font-size: 18px; font-weight: bold;">Wi-Fi 密码：</div>
-                //         <div style="font-size: 22px; font-weight: bold; color: #28a745;">${password}</div>
-                //         <br>
-                //         <div style="font-size: 14px; color: #666;">Wi-Fi密码已复制, 请手动前往 Wi-Fi 设置页面连接 Wi-Fi</div>
-                //     `,
-                //     icon: "info",
-                //     confirmButtonText: "确定"
-                // });
+                // 填充弹窗内容
+                document.getElementById('wifi-ssid').textContent = ssid;
+                document.getElementById('wifi-password').textContent = password;
 
+                // 显示弹窗
+                wifiInfoModal.style.display = 'block';
             } catch (err) {
                 alert("复制失败，请手动选择密码");
             } finally {
@@ -87,4 +71,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听按钮点击事件
     connectButton.addEventListener('click', handleCopy);
     connectButton.addEventListener('touchend', handleCopy);
+
+    // 关闭弹窗
+    closeModalBtn.addEventListener('click', () => {
+        wifiInfoModal.style.display = 'none';
+    });
+
+    modalOkBtn.addEventListener('click', () => {
+        wifiInfoModal.style.display = 'none';
+    });
+
+    // 点击弹窗外的区域也关闭弹窗
+    window.addEventListener('click', function(event) {
+        if (event.target == wifiInfoModal) {
+            wifiInfoModal.style.display = 'none';
+        }
+    });
 });

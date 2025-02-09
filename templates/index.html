@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wi-Fi</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
 </head>
 
 <body>
@@ -39,6 +38,19 @@
     <div id="wifi-config" 
          data-ssid="{{ ssid }}" 
          data-password="{{ password }}"></div>
+
+    <!-- Modal (Hidden by default) -->
+    <div id="wifi-info-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Wi-Fi 连接信息</h2>
+            <p><strong>Wi-Fi 名称：</strong><span id="wifi-ssid"></span></p>
+            <p><strong>Wi-Fi 密码：</strong><span id="wifi-password"></span></p>
+            <p>Wi-Fi 密码已复制, 请手动前往 Wi-Fi 设置页面连接 Wi-Fi。</p>
+            <button id="modal-ok-btn">确定</button>
+        </div>
+    </div>
+
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
