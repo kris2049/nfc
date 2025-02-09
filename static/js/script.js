@@ -4,8 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const deviceHint = document.getElementById('device-hint');
     const connectionTip = document.getElementById('connection-tip');
     const wifiInfoModal = document.getElementById('wifi-info-modal');
-    const closeModalBtn = document.getElementsByClassName('close-btn')[0];
-    const modalOkBtn = document.getElementById('modal-ok-btn');
+    const closeModalBtn = document.querySelector('.close-btn');
+    const okModalBtn = document.getElementById('modal-ok-btn');
+    const wifiSsidElement = document.getElementById('wifi-ssid');
+    const wifiPasswordElement = document.getElementById('wifi-password');
 
     // 获取 Wi-Fi SSID 和密码
     const password = wifiConfig.dataset.password;
@@ -28,12 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
             connectionTip.textContent = `Wi-Fi密码已复制, 请手动前往Wi-Fi设置连接 Wi-Fi 网络：${ssid}`;
             connectionTip.style.display = "block";  // 显示提示信息
 
-            // 填充弹窗内容
-            document.getElementById('wifi-ssid').textContent = ssid;
-            document.getElementById('wifi-password').textContent = password;
-
-            // 显示弹窗
-            wifiInfoModal.style.display = 'block';
+            // 显示弹窗并填充信息
+            wifiSsidElement.textContent = ssid;
+            wifiPasswordElement.textContent = password;
+            wifiInfoModal.style.display = "flex";
 
         } catch (error) {
             // 兼容旧浏览器
@@ -54,12 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 connectionTip.textContent = `Wi-Fi密码已复制, 请手动前往Wi-Fi设置连接 Wi-Fi 网络：${ssid}`;
                 connectionTip.style.display = "block";
 
-                // 填充弹窗内容
-                document.getElementById('wifi-ssid').textContent = ssid;
-                document.getElementById('wifi-password').textContent = password;
+                // 显示弹窗并填充信息
+                wifiSsidElement.textContent = ssid;
+                wifiPasswordElement.textContent = password;
+                wifiInfoModal.style.display = "flex";
 
-                // 显示弹窗
-                wifiInfoModal.style.display = 'block';
             } catch (err) {
                 alert("复制失败，请手动选择密码");
             } finally {
@@ -74,17 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 关闭弹窗
     closeModalBtn.addEventListener('click', () => {
-        wifiInfoModal.style.display = 'none';
+        wifiInfoModal.style.display = "none";
     });
-
-    modalOkBtn.addEventListener('click', () => {
-        wifiInfoModal.style.display = 'none';
-    });
-
-    // 点击弹窗外的区域也关闭弹窗
-    window.addEventListener('click', function(event) {
-        if (event.target == wifiInfoModal) {
-            wifiInfoModal.style.display = 'none';
-        }
+    okModalBtn.addEventListener('click', () => {
+        wifiInfoModal.style.display = "none";
     });
 });
